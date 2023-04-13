@@ -1,0 +1,6 @@
+<div class="game-choice game-choice--{{data.id}}"
+     [ngClass]="!absolute ? 'game-choice--' + data.id +'-big game-choice--' + data.id : 'game-choice--' + data.id +'-small game-choice--' + data.id +'-absolute'"
+     [ngStyle]="{'background-image': 'url(' + data.imgSrc + ')'}"
+>
+    <div *ngIf="!absolute && winner" class="game-choice__winner" ></div>
+</div>

@@ -1,0 +1,29 @@
+<ng-container *ngIf="$vm | async; let vm">
+  <main *ngIf="!vm.currentPlayerAnswer" class="game-screen">
+    <img alt="" src="./assets/images/bg-pentagon.svg"/>
+    <app-game-choice (click)="onChooseAnswer(d)" *ngFor="let d of data" [data]="d">
+    </app-game-choice>
+  </main>
+
+
+  <main *ngIf="vm.currentPlayerAnswer" [ngClass]="vm.winner ? 'game-results--2' : 'game-results--1'"
+        class="game-results">
+    <h4>You Picked</h4>
+    <h4>The House Picked</h4>
+    <app-game-choice [absolute]="false" [data]="vm.currentPlayerAnswer" [winner]="vm.winner === 1">
+    </app-game-choice>
+    <div *ngIf="vm.winner" class="game-results__info">
+      <ng-container [ngSwitch]="vm.winner">
+        <h4 class="uppercase" *ngSwitchCase="1">You Win</h4>
+        <h4 class="uppercase" *ngSwitchCase="2">You Lose</h4>
+        <h4 class="uppercase" *ngSwitchCase="3">Both Draw</h4>
+      </ng-container>
+      <button class="uppercase" (click)="onPlayAgain()">Play again</button>
+    </div>
+    <div *ngIf="!vm.currentComputerAnswer" class="game-results__placeholder">
+    </div>
+    <app-game-choice *ngIf="vm.currentComputerAnswer" [absolute]="false" [data]="vm.currentComputerAnswer"
+                     [winner]="vm.winner === 2">
+    </app-game-choice>
+  </main>
+</ng-container>

@@ -1,0 +1,61 @@
+.game-screen, .game-results {
+  @apply mx-auto;
+}
+
+.game-screen {
+  @apply flex items-center justify-center relative mt-28  max-w-fit mb-24 md:mb-36;
+
+  & img {
+    @media only screen and (max-width: 950px) {
+      width: 18rem;
+    }
+  }
+}
+
+.game-results {
+  @apply mx-auto grid mt-16 text-center justify-items-center gap-3 md:gap-1.5  mb-24 md:mb-12;
+
+  &--1 {
+    @apply w-[45rem] max-w-[80%] grid-cols-2;
+  }
+
+  &--2 {
+    @apply w-[60rem] max-w-[90%] grid-cols-3 md:grid-cols-2;
+  }
+
+  & h4 {
+    @apply text-white tracking-widest uppercase
+    text-2xl mb-12 md:text-[1rem];
+  }
+
+  &__computer, &__player {
+    @apply flex flex-col justify-between;
+  }
+
+  &__placeholder {
+    @apply h-60 w-60 rounded-full self-center md:w-40 md:h-40;
+    background-color: rgba(10, 23, 58, 0.5);
+  }
+
+  &__info {
+    grid-column: 2/3;
+    grid-row: 1/3;
+    align-self: center;
+    margin-top: 6rem;
+
+    @media only screen and (max-width: 950px) {
+      grid-column: 1/3;
+      grid-row: 4/5;
+      margin-top: 4rem;
+    }
+
+    h4 {
+      @apply text-[3.5rem] font-bold tracking-normal mb-10;
+    }
+
+    button {
+      @apply block w-full text-dark-text bg-white py-[0.8rem] rounded-lg
+      tracking-widest hover:text-red-500 duration-300;
+    }
+  }
+}

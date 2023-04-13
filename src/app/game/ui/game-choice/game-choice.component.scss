@@ -1,0 +1,140 @@
+$shadow-color--1: hsl(40, 79%, 37%);
+$shadow-color--2: rgb(21, 82, 175);
+$shadow-color--3: hsl(348, 56%, 35%);
+$shadow-color--4: rgb(93, 43, 175);
+$shadow-color--5: hsl(188, 58%, 38%);
+
+@function getShadowColor($colorID) {
+  @if $colorID == 1 {
+    @return $shadow-color--1;
+  } @else if $colorID == 2 {
+    @return $shadow-color--2;
+  } @else if $colorID == 3 {
+    @return $shadow-color--3;
+  } @else if $colorID == 4 {
+    @return $shadow-color--4;
+  } @else if $colorID == 5 {
+    @return $shadow-color--5;
+  } @else {
+    @error "Invalid color ID: #{$colorID}";
+  }
+}
+
+@mixin customBoxShadow($size, $colorID) {
+  @if $size == 'small' {
+    box-shadow: 2px 6px 2px 1px rgba(0, 0, 0, 0.15) inset,
+    0 8px 0 0 getShadowColor($colorID);
+    @media only screen and (max-width: 950px) {
+      box-shadow: 1px 4px 2px 1px rgba(0, 0, 0, 0.15) inset,
+      0 6px 0 0 getShadowColor($colorID);
+    }
+
+  } @else {
+    box-shadow: 2px 6px 2px 1px rgba(0, 0, 0, 0.15) inset,
+    0 8px 0 0 getShadowColor($colorID);
+  }
+}
+
+.game-choice {
+  @apply p-7 rounded-full;
+
+  background: no-repeat center white;
+
+  cursor: pointer;
+  transition: transform .3s;
+
+
+  & img {
+    max-width: fit-content;
+  }
+
+
+  @for $i from 1 through 5 {
+    &--#{$i}-big {
+      @apply w-72 h-72 border-[1.8rem] relative md:w-36 md:h-36 md:border-[1.2rem];
+      background-size: 100px !important;
+      @media only screen and (max-width: 950px) {
+        background-size: 50px !important;
+      }
+      @include customBoxShadow('big', $i)
+    }
+
+    &--#{$i}-small {
+      @apply w-36 h-36 border-[1rem] md:w-[8rem] md:h-[8rem];
+      background-size: 50px;
+      @include customBoxShadow('small', $i);
+      @media only screen and (max-width: 950px) {
+        background-size: 45px;
+      }
+    }
+
+    &--#{$i}-absolute {
+      @apply absolute;
+      transform: translate(-50%, -50%);
+
+      &:hover {
+        transform: scale(1.15) translate(-50%, -50%);
+        transform-origin: center;
+      }
+    }
+  }
+
+  &--1 {
+    @apply border-scissors-start;
+
+    &-absolute {
+      @apply top-0 left-1/2;
+    }
+
+  }
+
+  &--2 {
+    @apply border-blue-500;
+
+    &-absolute {
+      @apply left-full top-[40%] ;
+    }
+  }
+
+  &--3 {
+    @apply border-rock-start;
+    &-absolute {
+      @apply -bottom-[45%] left-[80%];
+    }
+  }
+
+  &--4 {
+    @apply border-lizard-start;
+    background-size: 60px;
+
+    @media only screen and (max-width: 767px) {
+      background-size: 50px;
+    }
+
+    &-absolute {
+      @apply -bottom-[45%] left-[20%];
+    }
+  }
+
+  &--5 {
+    @apply border-cyan-start;
+    &-absolute {
+      @apply left-0 top-[40%];
+    }
+  }
+
+
+  &__winner {
+    @apply absolute inset-0 bg-amber-100 rounded-full -z-10;
+    box-shadow: 0 0 0 95px rgba(255, 255, 255, 0.025),
+    0 0 0 165px rgba(255, 255, 255, 0.025),
+    0 0 0 250px rgba(255, 255, 255, 0.025);
+
+    @media only screen and (max-width: 950px) {
+      box-shadow: 0 0 0 45px rgba(255, 255, 255, 0.025),
+      0 0 0 80px rgba(255, 255, 255, 0.025),
+      0 0 0 120px rgba(255, 255, 255, 0.025);
+    }
+  }
+
+}

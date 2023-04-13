@@ -1,0 +1,22 @@
+.navbar {
+  @apply flex justify-between items-center w-[45rem] max-w-[80%] mx-auto
+  py-4 px-8 border-[3.5px] border-header-outline rounded-2xl
+  md:max-w-[90%];
+
+  &__title > li {
+    @apply text-white text-[1.7rem] font-bold leading-[0.85] pt-0 md:text-[1.5rem];
+  }
+
+  &__score-box {
+    @apply self-stretch bg-white flex justify-center items-center flex-col
+    px-12 rounded-xl md:px-8;
+
+    & p {
+      @apply text-score-text uppercase tracking-widest text-lg font-bold leading-none md:text-base;
+    }
+
+    & h3 {
+      @apply text-[3.8rem] leading-none font-bold text-dark-text md:text-[3.2rem];
+    }
+  }
+}

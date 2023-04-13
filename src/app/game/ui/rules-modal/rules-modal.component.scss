@@ -1,0 +1,21 @@
+.overlay {
+  @apply absolute inset-0 z-10 sm:hidden;
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.rules-modal {
+  @apply absolute z-20 bg-white top-1/2 left-1/2 py-8 px-8 rounded-lg sm:inset-0 sm:flex sm:items-center sm:justify-center sm:flex-col;
+  transform: translate(-50%, -50%);
+
+  @media only screen and (max-width: 950px) {
+    transform: translate(0%, 0%);
+  }
+
+  &__title {
+    @apply flex items-center justify-between mb-6;
+
+    & h3 {
+      @apply text-[1.9rem] uppercase text-dark-text font-bold leading-none sm:mb-8;
+    }
+  }
+}
