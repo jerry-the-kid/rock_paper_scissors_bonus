@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+// Fonts embedded
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  src: url("./assets/font/BarlowSemiCondensed-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'Barlow Semi Condensed';
+  src: url("./assets/font/BarlowSemiCondensed-SemiBold.ttf");
+  font-weight: 600;
+}
+
+body {
+  min-height: 100vh;
+  @apply relative bg-gradient-to-b from-main-start to-main-end pt-6;
+}
+
+
+
